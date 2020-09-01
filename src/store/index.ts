@@ -1,15 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { PaginationState } from './paginationTypes'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
+export interface RootState {
+  pagenation: PaginationState;
+}
+
+const store = new Vuex.Store<RootState>({})
+export default store

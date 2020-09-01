@@ -1,32 +1,44 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <header/>
+    <v-main>
+      <v-row>
+        <v-col v-for="content in contents" :key="content" cols="12">
+          <item
+            id="item"
+          ></item>
+        </v-col>
+      </v-row>
+
+      <v-pagination
+        v-model="page"
+        :length="6"
+      ></v-pagination>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import Header from './components/Header.vue'
+import item from './components/Item.vue'
+import { PaginationStore } from './store/pagination'
+import { PaginationState } from './store/paginationTypes'
 
-#nav {
-  padding: 30px;
+@Component({
+  components:{
+    Header,
+    item
+  }
+})
+export default class App extends Vue{
+  private contents = [1,2,3,4];
+  private page = 1;
 }
+</script>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style scoped>
+  #item{
+    
+  }
 </style>
